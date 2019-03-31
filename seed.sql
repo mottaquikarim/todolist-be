@@ -5,7 +5,7 @@ CREATE DATABASE todolist;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    email VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE,
     token VARCHAR
 );
 
