@@ -22,12 +22,20 @@ const putUser = (req, res) => {
         })
 }
 
+const getItems = (req, res) => {
+    User.getItems(req.params.id)
+        .then(data => {
+            res.json(data)
+        })
+}
+
 const getUserRouter = () => {
     const router = express.Router();
 
     router.post('/', postUser)
     router.get('/:id', getUser)
     router.put('/:id', putUser)
+    router.get('/:id/listitems', getItems)
 
     return router;
 }

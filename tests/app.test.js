@@ -11,6 +11,9 @@ const bodyParser = require('body-parser')
 jest.mock('../routes/user')
 const {getUserRouter,} = require('../routes/user')
 
+jest.mock('../routes/listitem')
+const {getListItemRouter,} = require('../routes/listitem')
+
 const {getApp,} = require('../app')
 
 test('just make it run, lol', done => {
@@ -24,9 +27,10 @@ test('just make it run, lol', done => {
 
     const app = getApp()
     expect(app).toEqual(mockApp)
-    expect(mockUse.mock.calls.length).toBe(2)
+    expect(mockUse.mock.calls.length).toBe(3)
     expect(mockUse.mock.calls[0][0]).toBe('bogus')
     expect(getUserRouter.mock.calls.length).toBe(1)
+    expect(getListItemRouter.mock.calls.length).toBe(1)
 
     done()
 })

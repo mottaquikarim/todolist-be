@@ -29,9 +29,17 @@ const put = (id, data) => {
         })
 }
 
+const getItems = uid => {
+    return getDbConn(dbAddr).any(
+        'SELECT users.id, users.email, listitems.todo FROM users JOIN listitems ON users.id = listitems.user_id WHERE users.id = $[uid]',
+        {uid}
+    );
+}
+
 module.exports = {
     add,
     get,
     put,
+    getItems,
 }
 
