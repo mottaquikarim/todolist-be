@@ -1,6 +1,8 @@
 const express = require('express');
 const User = require('../services/user');
 
+const {fireAuthService,} = require('../middleware')
+
 const postUser = (req, res) => {
     User.add(req.body.email)
         .then(data => {
@@ -35,7 +37,7 @@ const getUserRouter = () => {
     router.post('/', postUser)
     router.get('/:id', getUser)
     router.put('/:id', putUser)
-    router.get('/:id/listitems', getItems)
+    router.get('/:id/listitems', fireAuthService, getItems)
 
     return router;
 }
